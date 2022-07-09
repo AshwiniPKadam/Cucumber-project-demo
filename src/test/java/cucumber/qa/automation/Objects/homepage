@@ -1,0 +1,31 @@
+
+private By  searchBoxElement=By.id("twotabsearchtextbox");
+private By seachBtnElement = By.xpath("//input[@value='Go']");
+
+
+//Constructor
+public CmnPageObjects(WebDriver driver,Scenario scn)
+{
+	this.driver=driver;
+	this.scn=scn;
+
+}
+
+//Page Methods
+	public void validateLandingPageTitle()
+	{
+		
+		
+		String expected = "Online Shopping site in India: Shop Online for Mobiles, Books, Watches, Shoes and More - Amazon.in";
+		
+		String actual =driver.getTitle();
+Assert.assertEquals("title matched", expected,actual);
+		scn.log("Page title validation successfull. Actual title: " + actual );
+		logger.info("Page title validation successfull. Actual title: " + actual );
+	}
+	
+	public void searchProduct(String productName)
+	{
+		WebDriverWait webDriverWait = new WebDriverWait(driver,20);
+		WebElement elementSearchBox = webDriverWait.until(ExpectedConditions.elementToBeClickable(searchBoxElement));
+		logger.info("Created webelement for searchbox");
